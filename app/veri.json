@@ -1,0 +1,416 @@
+{
+  "champs": [
+    {
+      "champname": "Ahri",
+      "champimages": [
+        "ahri1.png",
+        "ahri2.png",
+        "ahri3.png",
+        "ahri4.png",
+        "ahri5.png",
+        "ahri6.png",
+        "ahri7.png",
+        "ahri8.png",
+        "ahri9.png",
+        "ahri10.png"
+      ]
+    },
+    {
+      "champname": "Lux",
+      "champimages": [
+        "lux1.png",
+        "lux2.png",
+        "lux3.png",
+        "lux4.png",
+        "lux5.png",
+        "lux6.png",
+        "lux7.png",
+        "lux8.png",
+        "lux9.png"
+      ]
+    },
+    {
+      "champname": "Akali",
+      "champimages": [
+        "akali1.png",
+        "akali2.png",
+        "akali3.png",
+        "akali4.png",
+        "akali5.png",
+        "akali6.png",
+        "akali7.png"
+      ]
+    },
+    {
+      "champname": "Ashe",
+      "champimages": [
+        "ashe1.png",
+        "ashe2.png",
+        "ashe3.png",
+        "ashe4.png",
+        "ashe5.png"
+      ]
+    },
+    {
+      "champname": "Annie",
+      "champimages": [
+        "annie1.png",
+        "annie2.png",
+        "annie3.png",
+        "annie4.png",
+        "annie5.png",
+        "annie6.png",
+        "annie7.png",
+        "annie8.png",
+        "annie9.png",
+        "annie10.png",
+        "annie11.png"
+      ]
+    },
+    {
+      "champname": "Fiora",
+      "champimages": [
+        "fiora1.png"
+      ]
+    },
+    {
+      "champname": "Camille",
+      "champimages": [
+        "camille1.png",
+        "camille2.png",
+        "camille3.png",
+        "camille4.png",
+        "camille5.png",
+        "camille6.png",
+        "camille7.png",
+        "camille8.png"
+      ]
+    },
+    {
+      "champname": "Diana",
+      "champimages": [
+        "diana1.png",
+        "diana2.png",
+        "diana3.png",
+        "diana4.png",
+        "diana5.png"
+      ]
+    },
+    {
+      "champname": "Janna",
+      "champimages": [
+        "janna1.png",
+        "janna2.png",
+        "janna3.png",
+        "janna4.png",
+        "janna5.png"
+      ]
+    },
+    {
+      "champname": "Kalista",
+      "champimages": [
+        "kalista1.png"
+      ]
+    },
+    {
+      "champname": "Lux",
+      "champimages": [
+        "lux1.png",
+        "lux2.png",
+        "lux3.png",
+        "lux4.png",
+        "lux5.png",
+        "lux6.png",
+        "lux7.png",
+        "lux8.png"
+      ]
+    },
+    {
+      "champname": "Jinx",
+      "champimages": [
+        "jinx1.png",
+        "jinx2.png",
+        "jinx3.png",
+        "jinx4.png",
+        "jinx5.png",
+        "jinx6.png",
+        "jinx7.png",
+        "jinx8.png",
+        "jinx9.png"
+      ]
+    },
+    {
+      "champname": "Elise",
+      "champimages": [
+        "elise1.png"
+      ]
+    },
+    {
+      "champname": "Evelynn",
+      "champimages": [
+        "evelynn1.png",
+        "evelynn2.png",
+        "evelynn3.png",
+        "evelynn4.png"
+      ]
+    },
+    {
+      "champname": "Irelia",
+      "champimages": [
+        "irelia1.png"
+      ]
+    },
+    {
+      "champname": "Karma",
+      "champimages": [
+        "karma1.png",
+        "karma2.png"
+      ]
+    },
+    {
+      "champname": "LeBlanc",
+      "champimages": [
+        "leblanc1.png",
+        "leblanc2.png"
+      ]
+    },
+    {
+      "champname": "Katarina",
+      "champimages": [
+        "katarina1.png",
+        "katarina2.png",
+        "katarina3.png"
+      ]
+    },
+    {
+      "champname": "Kayle",
+      "champimages": [
+        "kayle1.png",
+        "kayle2.png",
+        "kayle3.png",
+        "kayle4.png"
+      ]
+    },
+    {
+      "champname": "Leona",
+      "champimages": [
+        "leona1.png",
+        "leona2.png",
+        "leona3.png",
+        "leona4.png"
+      ]
+    },
+    {
+      "champname": "Lillia",
+      "champimages": [
+        "lillia1.png",
+        "lillia2.png",
+        "lillia3.png",
+        "lillia4.png"
+      ]
+    },
+    {
+      "champname": "Morgana",
+      "champimages": [
+        "morgana1.png"
+      ]
+    },
+    {
+      "champname": "Miss Fortune",
+      "champimages": [
+        "missfortune1.png",
+        "missfortune2.png",
+        "missfortune3.png",
+        "missfortune4.png",
+        "missfortune5.png",
+        "missfortune6.png",
+        "missfortune7.png",
+        "missfortune8.png",
+        "missfortune9.png",
+        "missfortune10.png",
+        "missfortune11.png",
+        "missfortune12.png",
+        "missfortune13.png",
+        "missfortune14.png"
+      ]
+    },
+    {
+      "champname": "Illaoi",
+      "champimages": [
+        "illaoi1.png",
+        "illaoi2.png"
+      ]
+    },
+    {
+      "champname": "Zyra",
+      "champimages": [
+        "zyra1.png",
+        "zyra2.png",
+        "zyra3.png",
+        "zyra4.png"
+      ]
+    },
+    {
+      "champname": "Yuumi",
+      "champimages": [
+        "yuumi1.png",
+        "yuumi2.png",
+        "yuumi3.png"
+      ]
+    },
+    {
+      "champname": "Zoe",
+      "champimages": [
+        "zoe1.png",
+        "zoe2.png",
+        "zoe3.png",
+        "zoe4.png",
+        "zoe5.png",
+        "zoe6.png"
+      ]
+    },
+    {
+      "champname": "Xayah",
+      "champimages": [
+        "xayah1.png"
+      ]
+    },
+    {
+      "champname": "Vi",
+      "champimages": [
+        "vi1.png",
+        "vi2.png",
+        "vi3.png",
+        "vi4.png",
+        "vi5.png"
+      ]
+    },
+    {
+      "champname": "Tristana",
+      "champimages": [
+        "tristana1.png",
+        "tristana2.png",
+        "tristana3.png",
+        "tristana4.png",
+        "tristana5.png",
+        "tristana6.png",
+        "tristana7.png"
+      ]
+    },
+    {
+      "champname": "Taliyah",
+      "champimages": [
+        "taliyah1.png",
+        "taliyah2.png"
+      ]
+    },
+    {
+      "champname": "Syndra",
+      "champimages": [
+        "syndra1.png",
+        "syndra2.png",
+        "syndra3.png",
+        "syndra4.png",
+        "syndra5.png"
+      ]
+    },
+    {
+      "champname": "Soraka",
+      "champimages": [
+        "soraka1.png",
+        "soraka2.png"
+      ]
+    },
+    {
+      "champname": "Sona",
+      "champimages": [
+        "sona1.png"
+      ]
+    },
+    {
+      "champname": "Sivir",
+      "champimages": [
+        "sivir1.png",
+        "sivir2.png",
+        "sivir3.png",
+        "sivir4.png",
+        "sivir5.png"
+      ]
+    },
+    {
+      "champname": "Seraphine",
+      "champimages": [
+        "seraphine1.png"
+      ]
+    },
+    {
+      "champname": "Sejuani",
+      "champimages": [
+        "sejuani1.png"
+      ]
+    },
+    {
+      "champname": "Samira",
+      "champimages": [
+        "samira1.png"
+      ]
+    },
+    {
+      "champname": "Rell",
+      "champimages": [
+        "rell1.png"
+      ]
+    },
+    {
+      "champname": "Qiyana",
+      "champimages": [
+        "qiyana1.png"
+      ]
+    },
+    {
+      "champname": "Briar",
+      "champimages": [
+        "briar1.png",
+        "briar2.png"
+      ]
+    },
+    {
+      "champname": "Gwen",
+      "champimages": [
+        "gwen1.png"
+      ]
+    },
+    {
+      "champname": "Orianna",
+      "champimages": [
+        "orianna1.png"
+      ]
+    },
+    {
+      "champname": "Orianna",
+      "champimages": [
+        "orianna1.png"
+      ]
+    },
+    {
+      "champname": "Nidalee",
+      "champimages": [
+        "nidalee1.png",
+        "nidalee2.png",
+        "nidalee3.png",
+        "nidalee4.png",
+        "nidalee5.png",
+        "nidalee6.png"
+      ]
+    },
+    {
+      "champname": "Neeko",
+      "champimages": [
+        "neeko1.png",
+        "neeko2.png",
+        "neeko3.png",
+        "neeko4.png"
+      ]
+    }
+  ]
+}
