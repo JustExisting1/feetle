@@ -1,10 +1,12 @@
 import {
   useEffect,
+  useRef,
   useState,
   type JSX,
   type KeyboardEventHandler,
 } from "react";
-import champs from "/app/championFeetList.json";
+import champFile from "/app/championFeetList.json";
+import { cn } from "~/util/mergeCss";
 
 interface IChamp {
   id: number;
@@ -17,7 +19,7 @@ export default function InfinitePage() {
   const [champName, setChampName] = useState<string>();
   const [champImage, setChampImage] = useState<string>();
 
-  const champlist: IChamp[] = champs;
+  const champlist: IChamp[] = champFile;
   const max = champlist.length;
   const imagePrefix = "/app/champs/";
 
@@ -47,29 +49,20 @@ export default function InfinitePage() {
   //force input lowercase a-z
 
   return (
-    <div className="bg-[url(/background.png)] h-dvh w-screen bg-cover bg-center p-4 font-display">
+    <div className="bg-[url(/background.png)] h-dvh w-screen bg-cover bg-center p-4 font-display flex flex-col">
       <div
-        className="w-full md:w-1/3 h-full grow text-white bg-black/70 border-3 border-league-gold rounded-2xl 
+        className="w-full md:w-1/3 h-full overflow-y-clip text-white bg-black/70 border-3 border-league-gold rounded-2xl 
        place-self-center place-items-center flex flex-col gap-4 place-content-start py-4">
         <div className="text-lg">Total Scored All Time:456456465</div>
-        <div className="bg-league-gold p-2 text-2xl rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
+        <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
           Score:99999999
         </div>
-        <div className="w-2/3 aspect-square overflow-clip rounded-2xl border-2 border-league-gold">
+        <div className="w-2/3 shrink-0 h-fit aspect-square overflow-clip rounded-2xl border-2 border-league-gold">
           <img className="size-full aspect-square" src={champImage} />
         </div>
-        <label className="text-xl">Who could it be? HINTS</label>
-        <div className="rounded-lg bg-neutral-700 w-4/5 lg:w-4/6 flex p-1 place-content-between gap-1">
-          <select
-            className="rounded-lg w-full grow px-2 lg:w-4/6 flex text-white
-          focus:outline-0"
-            autoComplete={champlist[0].name}></select>
-          <button className="bg-league-gold size-12 place-self-center aspect-square rounded-r-md" />
-        </div>
-        <div className="grow">
-          <Autocomplete />
-        </div>
-        <button className="bg-destructive p-2 rounded-lg text-xl">
+        <label className="text-xl shrink-0 h-fit">Who could it be? HINTS</label>
+        <Autocomplete classname="w-10/12 2xl:w-2/3 p-2 gap-2 rounded-xl h-1/2 flex flex-col" />
+        <button className="bg-destructive p-2 rounded-lg text-xl shrink-0 h-fit">
           End Game
         </button>
       </div>
@@ -77,11 +70,10 @@ export default function InfinitePage() {
   );
 }
 
-function Autocomplete() {
+function Autocomplete({ classname }: { classname: string }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
-
-  const { champs, loading } = useChamps("/dir/to/json", searchTerm);
+  const { champs } = useChamps(champFile as IChamp[], searchTerm);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -90,6 +82,12 @@ function Autocomplete() {
   const handleSelect = (champ: IChamp) => {
     setSearchTerm(champ.name);
   };
+
+  useEffect(() => {
+    if (champs.length <= 0) {
+      setActiveIndex(0);
+    }
+  }, [champs]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowDown") {
@@ -104,25 +102,28 @@ function Autocomplete() {
   };
 
   return (
-    <div>
+    <div className={classname}>
       <input
+        className="flex w-full h-fit text-xl py-2 shrink-0 text-center bg-white/10 rounded-lg"
         onChange={handleChange}
         onKeyDown={onKeyDown}
         value={searchTerm}
         placeholder="Type champion name..."
       />
       {searchTerm ? (
-        <div>
+        <div
+          className="flex w-full h-fit overflow-y-scroll border-2 border-league-gold rounded-lg bg-black/70
+           p-2 scroll-py-2 -scroll-my-2
+         [&::-webkit-scrollbar]:hidden">
           <ResultList
             results={champs}
             searchTerm={searchTerm}
-            loading={loading}
             handleSelect={handleSelect}
             activeIndex={activeIndex}
           />
         </div>
       ) : (
-        <div>Start typing to search</div>
+        <div className="text-center text-xl"></div>
       )}
     </div>
   );
@@ -131,7 +132,6 @@ function Autocomplete() {
 interface ResultListProps {
   results: IChamp[];
   searchTerm: string;
-  loading: boolean;
   handleSelect: (champ: IChamp) => void;
   activeIndex: number;
 }
@@ -139,10 +139,10 @@ interface ResultListProps {
 function ResultList({
   results,
   searchTerm,
-  loading,
   handleSelect,
   activeIndex,
 }: ResultListProps) {
+  const myRef = useRef(null);
   const matchedTerm = (name: string, searchTerm: string) => {
     const index = name.toLowerCase().indexOf(searchTerm.toLowerCase());
     if (index === -1) {
@@ -156,24 +156,38 @@ function ResultList({
       </>
     );
   };
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  useEffect(() => {
+    myRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [activeIndex]);
 
   if (results.length === 0) {
-    return <div>No results found</div>;
+    return <div className="text-center text-xl w-full">No results found</div>;
   }
+
   return (
     <>
-      <ol>
+      <ol className="flex flex-col w-full h-fit gap-0.5 p-1">
         {results.map((result, index) => (
           <li
+            ref={activeIndex === index ? myRef : null}
             key={result.id}
             onClick={() => handleSelect(result)}
-            className={activeIndex === index ? "active" : ""}>
-            <>
-              {matchedTerm(result.name, searchTerm)} <span>{result.tile}</span>
-            </>
+            className={cn(
+              "flex flex-row h-16 w-full place-content-start gap-2 hover:bg-white/20",
+              activeIndex === index
+                ? "active bg-white/20 ring-2 ring-league-gold drop-shadow-md"
+                : ""
+            )}>
+            <div className="flex w-fit aspect-square">
+              <img className="size-full" src={`/app/tiles/${result.tile}`} />
+            </div>
+            <div className="w-full text-2xl place-self-center">
+              {matchedTerm(result.name, searchTerm)}{" "}
+            </div>
           </li>
         ))}
       </ol>
@@ -181,24 +195,20 @@ function ResultList({
   );
 }
 
-function useChamps(url: string, searchTerm?: string) {
+function useChamps(champList: IChamp[], searchTerm?: string) {
   const [champs, setChamps] = useState<IChamp[]>([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     if (!searchTerm) {
-      setLoading(false);
       return setChamps([]);
     }
-
-    //Load from chache if possible
-    const cachedData = sessionStorage.getItem(`champs_${searchTerm}`);
-    if (cachedData) {
-      setChamps(JSON.parse(cachedData));
-      setLoading(false);
-    }
     //Maybe adjust for a json file instead
+    const filtedList = champList.filter((value) => {
+      return value.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    return setChamps(filtedList);
+
+    /*
     const getChamps = setTimeout(async () => {
       try {
         const response = await fetch(url + `?searchTerm=${searchTerm}`);
@@ -211,7 +221,7 @@ function useChamps(url: string, searchTerm?: string) {
         console.error(error);
       }
     }, 300);
-    return () => clearTimeout(getChamps);
-  }, [url, searchTerm]);
-  return { champs, loading };
+    return () => clearTimeout(getChamps);*/
+  }, [champList, searchTerm]);
+  return { champs };
 }
