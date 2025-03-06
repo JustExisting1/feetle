@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useImperativeHandle,
   useRef,
   useState,
   type JSX,
@@ -7,6 +8,7 @@ import {
 } from "react";
 import champFile from "/app/championFeetList.json";
 import { cn } from "~/util/mergeCss";
+import { Navigate, NavLink } from "react-router";
 
 interface IChamp {
   id: number;
@@ -58,6 +60,7 @@ export default function InfinitePage() {
 
     if (inputGuess === champName) {
       setScore(score + 1);
+      setGuessState(gState.CORRECT);
       selectChamp();
     } else {
       setGuessState(gState.INCORRECT);
@@ -95,6 +98,19 @@ export default function InfinitePage() {
     return setHint(tempArr);
   }
 
+  const renderGuess = () => {
+    switch (guessState) {
+      case gState.INCORRECT: {
+        return <p className="text-destructive">Try again</p>;
+      }
+      case gState.CORRECT: {
+        return <p className="text-white">Who could it be?</p>;
+      }
+      default:
+        return <p className="text-white">Who could it be?</p>;
+    }
+  };
+
   useEffect(() => {
     setGuessCount(0);
     setHint([]);
@@ -118,13 +134,13 @@ export default function InfinitePage() {
         <div className="w-2/3 h-fit aspect-square overflow-clip rounded-2xl border-2 border-league-gold">
           <img className="size-full aspect-square" src={champImage} />
         </div>
-        <label className="text-xl shrink-0 h-fit">
-          {guessState == gState.INCORRECT ? "Try again" : "Who could it be?"}
-        </label>
+        <label className="text-xl shrink-0 h-fit">{renderGuess()}</label>
         <div className="w-full h-fit shrink-0 flex gap-x-2 text-center place-content-center">
           {hint.map((letter, index) => {
             return (
-              <div className="w-8 aspect-square border-b-2" key={index}>
+              <div
+                className="w-8 aspect-square border-b-2 text-2xl"
+                key={index}>
                 {letter}
               </div>
             );
@@ -133,10 +149,14 @@ export default function InfinitePage() {
         <Autocomplete
           classname="w-10/12 2xl:w-2/3 p-2 gap-2 rounded-xl min-h-1/3 grow flex flex-col"
           submitGuess={guessSubmit}
+          score={score}
         />
-        <button className="bg-destructive p-2 rounded-lg text-xl shrink-0 h-fit">
+        <NavLink
+          className="bg-destructive p-2 rounded-lg text-xl shrink-0 h-fit"
+          to="/"
+          end>
           End Game
-        </button>
+        </NavLink>
       </div>
     </div>
   );
@@ -145,13 +165,19 @@ export default function InfinitePage() {
 function Autocomplete({
   classname,
   submitGuess,
+  score,
 }: {
   classname: string;
   submitGuess: Function;
+  score: number;
 }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
   const { champs } = useChamps(champFile as IChamp[], searchTerm);
+
+  useEffect(() => {
+    setSearchTerm("");
+  }, [score]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
