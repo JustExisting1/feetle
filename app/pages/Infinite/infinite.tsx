@@ -15,9 +15,17 @@ interface IChamp {
   images: string[];
 }
 
+enum gState {
+  CORRECT,
+  INCORRECT,
+  NULL,
+}
+
 export default function InfinitePage() {
   const [champName, setChampName] = useState<string>();
   const [champImage, setChampImage] = useState<string>();
+  const [score, setScore] = useState<number>(0);
+  const [guessState, setGuessState] = useState<gState>(gState.NULL);
 
   const champlist: IChamp[] = champFile;
   const max = champlist.length;
@@ -41,12 +49,60 @@ export default function InfinitePage() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  const [hint, setHint] = useState<string[]>([]);
+  const [hintSlots, setHintSlots] = useState<number[]>([]);
+  const [guessCount, setGuessCount] = useState<number>(0);
+
+  const guessSubmit = (inputGuess: string) => {
+    console.log("You guessed:" + inputGuess, " it was:" + champName);
+
+    if (inputGuess === champName) {
+      setScore(score + 1);
+      selectChamp();
+    } else {
+      setGuessState(gState.INCORRECT);
+      updateHint();
+      setGuessCount(guessCount + 1);
+      //update guess hint
+      //setHint()
+    }
+  };
+
+  function updateHint() {
+    //No champ set
+    if (!champName) return;
+    //name filled out
+    if (guessCount > champName.length) return;
+    //first guess
+    if (guessCount === 0) {
+      const tempArr = new Array(champName.length);
+      tempArr.fill(" ", 0);
+      const numberArr: number[] = [];
+      tempArr.map((item, index) => {
+        numberArr.push(index);
+      });
+      setHintSlots(numberArr);
+      return setHint(tempArr);
+    }
+
+    const randNum = getRandomInt(0, hintSlots.length);
+    const slot = hintSlots[randNum];
+    const tempSlotArr = hintSlots;
+    tempSlotArr.splice(randNum, 1);
+    setHintSlots(tempSlotArr);
+    const tempArr = hint.fill(champName[slot], slot, slot + 1);
+    console.log("Hint: " + tempArr);
+    return setHint(tempArr);
+  }
+
+  useEffect(() => {
+    setGuessCount(0);
+    setHint([]);
+  }, [champName]);
+
   useEffect(() => {
     selectChamp();
   }, []);
-  //get random image from folder
-  //store champ name as answer
-  //force input lowercase a-z
 
   return (
     <div className="bg-[url(/background.png)] h-dvh w-screen bg-cover bg-center p-4 font-display flex flex-col">
@@ -57,13 +113,27 @@ export default function InfinitePage() {
           Total Scored All Time:456456465
         </div>
         <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
-          Score:99999999
+          Score:{score}
         </div>
         <div className="w-2/3 h-fit aspect-square overflow-clip rounded-2xl border-2 border-league-gold">
           <img className="size-full aspect-square" src={champImage} />
         </div>
-        <label className="text-xl shrink-0 h-fit">Who could it be? HINTS</label>
-        <Autocomplete classname="w-10/12 2xl:w-2/3 p-2 gap-2 rounded-xl min-h-1/3 grow flex flex-col" />
+        <label className="text-xl shrink-0 h-fit">
+          {guessState == gState.INCORRECT ? "Try again" : "Who could it be?"}
+        </label>
+        <div className="w-full h-fit shrink-0 flex gap-x-2 text-center place-content-center">
+          {hint.map((letter, index) => {
+            return (
+              <div className="w-8 aspect-square border-b-2" key={index}>
+                {letter}
+              </div>
+            );
+          })}
+        </div>
+        <Autocomplete
+          classname="w-10/12 2xl:w-2/3 p-2 gap-2 rounded-xl min-h-1/3 grow flex flex-col"
+          submitGuess={guessSubmit}
+        />
         <button className="bg-destructive p-2 rounded-lg text-xl shrink-0 h-fit">
           End Game
         </button>
@@ -72,7 +142,13 @@ export default function InfinitePage() {
   );
 }
 
-function Autocomplete({ classname }: { classname: string }) {
+function Autocomplete({
+  classname,
+  submitGuess,
+}: {
+  classname: string;
+  submitGuess: Function;
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
   const { champs } = useChamps(champFile as IChamp[], searchTerm);
@@ -83,13 +159,18 @@ function Autocomplete({ classname }: { classname: string }) {
 
   const handleSelect = (champ: IChamp) => {
     setSearchTerm(champ.name);
+    handleGuess(champ.name);
+  };
+
+  const handleGuess = (guess: string) => {
+    submitGuess(guess);
   };
 
   useEffect(() => {
-    if (champs.length <= 0) {
+    {
       setActiveIndex(0);
     }
-  }, [champs]);
+  }, [champs, searchTerm]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowDown") {
@@ -99,7 +180,12 @@ function Autocomplete({ classname }: { classname: string }) {
       setActiveIndex((prev) => (prev - 1 + champs.length) % champs.length);
     }
     if (event.key === "Enter") {
-      setSearchTerm(champs[activeIndex].name);
+      try {
+        setSearchTerm(champs[activeIndex].name);
+        handleGuess(champs[activeIndex].name);
+      } catch {
+        console.log("Guess doesnt exist");
+      }
     }
   };
 
@@ -204,26 +290,10 @@ function useChamps(champList: IChamp[], searchTerm?: string) {
     if (!searchTerm) {
       return setChamps([]);
     }
-    //Maybe adjust for a json file instead
     const filtedList = champList.filter((value) => {
       return value.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
     return setChamps(filtedList);
-
-    /*
-    const getChamps = setTimeout(async () => {
-      try {
-        const response = await fetch(url + `?searchTerm=${searchTerm}`);
-        const data = await response.json();
-        setChamps(data);
-        setLoading(false);
-
-        sessionStorage.setItem(`champs_${searchTerm}`, JSON.stringify(data));
-      } catch (error) {
-        console.error(error);
-      }
-    }, 300);
-    return () => clearTimeout(getChamps);*/
   }, [champList, searchTerm]);
   return { champs };
 }
