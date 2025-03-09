@@ -1,11 +1,10 @@
 import InfinitePage from "~/pages/Infinite/infinite";
 import type { Route } from "./+types/home";
-import HomePage from "~/pages/Home/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Feetle 🦶" },
-    { name: "description", content: "Welcome to React Router!" },
+    { name: "description", content: "Feetle, infinite fun in a relaxed gamemode." },
   ];
 }
 

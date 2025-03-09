@@ -8,15 +8,23 @@ import {
 } from "react";
 import champFile from "/app/championFeetList.json";
 import { cn } from "~/util/mergeCss";
-import { Navigate, NavLink } from "react-router";
+import { Navigate, NavLink, redirect, useNavigate } from "react-router";
 import type { IChamp } from "~/util/types";
 import Autocomplete from "~/components/Autocomplete";
 import getRandomInt from "~/util/getRandomInt";
 
-export default function InfinitePage() {
+export default function HealthPage() {
   const [champName, setChampName] = useState<string>();
   const [champImage, setChampImage] = useState<string>();
   const [score, setScore] = useState<number>(0);
+  const [hp, setHp] = useState<number>(3);
+
+  /**
+   * Add hp system
+   * upon wrong guess -1 hp
+   * if hp = 0
+   *  send user to endgame screen with score and game length
+   */
 
   const champlist: IChamp[] = champFile; //Could be api call for champlist
   const MAX = champlist.length;
@@ -51,11 +59,10 @@ export default function InfinitePage() {
       setScore(score + 1);
       selectChamp();
     } else {
+      setHp(hp - 1);
       setGuessState(true);
       updateHint();
       setGuessCount(guessCount + 1);
-      //update guess hint
-      //setHint()
     }
   };
 
@@ -97,6 +104,15 @@ export default function InfinitePage() {
 
   // --------------- End Hint Function ------------------
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (hp <= 0) {
+      console.log("Game over with a score of: " + score);
+      //redirect to leaderboard/game over page
+      navigate("/");
+    }
+  }, [hp]);
+
   useEffect(() => {
     selectChamp();
   }, []);
@@ -114,6 +130,9 @@ export default function InfinitePage() {
         </div>
         <div className="w-2/3 h-fit aspect-square overflow-clip rounded-2xl border-2 border-league-gold">
           <img className="size-full aspect-square" src={champImage} />
+        </div>
+        <div className="bg-destructive p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
+          Health:{hp}
         </div>
         <label className="text-xl shrink-0 h-fit">
           {guessState === true ? (
