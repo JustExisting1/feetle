@@ -6,7 +6,7 @@ import {
   type JSX,
   type KeyboardEventHandler,
 } from "react";
-import champFile from "/app/championFeetList.json";
+import champFile from "~/championFeetList.json";
 import { cn } from "~/util/mergeCss";
 import { Navigate, NavLink } from "react-router";
 import type { IChamp } from "~/util/types";

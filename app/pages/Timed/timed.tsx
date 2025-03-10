@@ -3,28 +3,26 @@ import {
   useImperativeHandle,
   useRef,
   useState,
+  type ComponentProps,
+  type ComponentPropsWithRef,
   type JSX,
   type KeyboardEventHandler,
+  type Ref,
+  type RefCallback,
+  type RefObject,
 } from "react";
 import champFile from "~/championFeetList.json";
 import { cn } from "~/util/mergeCss";
-import { Navigate, NavLink, redirect, useNavigate } from "react-router";
+import { Navigate, NavLink } from "react-router";
 import type { IChamp } from "~/util/types";
 import Autocomplete from "~/components/Autocomplete";
 import getRandomInt from "~/util/getRandomInt";
 
-export default function HealthPage() {
+export default function TimedPage() {
   const [champName, setChampName] = useState<string>();
   const [champImage, setChampImage] = useState<string>();
   const [score, setScore] = useState<number>(0);
-  const [hp, setHp] = useState<number>(3);
-
-  /**
-   * Add hp system
-   * upon wrong guess -1 hp
-   * if hp = 0
-   *  send user to endgame screen with score and game length
-   */
+  const timer = useRef(null);
 
   const champlist: IChamp[] = champFile; //Could be api call for champlist
   const MAX = champlist.length;
@@ -59,10 +57,12 @@ export default function HealthPage() {
       setScore(score + 1);
       selectChamp();
     } else {
-      setHp(hp - 1);
+      timer.current?.reduceTimer();
       setGuessState(true);
       updateHint();
       setGuessCount(guessCount + 1);
+      //update guess hint
+      //setHint()
     }
   };
 
@@ -104,15 +104,6 @@ export default function HealthPage() {
 
   // --------------- End Hint Function ------------------
 
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (hp <= 0) {
-      console.log("Game over with a score of: " + score);
-      //redirect to leaderboard/game over page
-      navigate("/");
-    }
-  }, [hp]);
-
   useEffect(() => {
     selectChamp();
   }, []);
@@ -128,11 +119,11 @@ export default function HealthPage() {
         <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
           Score:{score}
         </div>
+        <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
+          <Timer startTime={300} ref={timer} />
+        </div>
         <div className="w-2/3 h-fit aspect-square overflow-clip rounded-2xl border-2 border-league-gold">
           <img className="size-full aspect-square" src={champImage} />
-        </div>
-        <div className="bg-destructive p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
-          Health:{hp}
         </div>
         <label className="text-xl shrink-0 h-fit">
           {guessState === true ? (
@@ -165,6 +156,53 @@ export default function HealthPage() {
           End Game
         </NavLink>
       </div>
+    </div>
+  );
+}
+
+function Timer({ startTime, ref }: { startTime: number; ref?: any }) {
+  const [state, setState] = useState<number>(startTime);
+
+  const minutes = (time: number) => {
+    return Math.floor((time - 1) / 60);
+  };
+
+  const seconds = (time: number) => {
+    return time - Math.floor((time - 1) / 60) * 60 - 1;
+  };
+
+  /**
+   * Doesnt work as desired
+   * Since useEffect timer is using timout,
+   * it runs independantly.
+   * So when time is reduced, two timers are running
+   * Insead, time date should be used, and the deadline can be moved
+   * backwards 30 seconds to change the duration
+   */
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        reduceTimer() {
+          setState(state - 30);
+        },
+      };
+    },
+    [state]
+  );
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (state === 0) return;
+
+      setState(state - 1);
+    }, 1000);
+  }, [state]);
+
+  return (
+    <div>
+      {minutes(state)}:
+      {seconds(state) < 10 ? "0" + seconds(state) : seconds(state)}
     </div>
   );
 }
