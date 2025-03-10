@@ -1,14 +1,6 @@
-import {
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-  type JSX,
-  type KeyboardEventHandler,
-} from "react";
+import { useEffect, useState } from "react";
 import champFile from "~/championFeetList.json";
-import { cn } from "~/util/mergeCss";
-import { Navigate, NavLink } from "react-router";
+import { NavLink } from "react-router";
 import type { IChamp } from "~/util/types";
 import Autocomplete from "~/components/Autocomplete";
 import getRandomInt from "~/util/getRandomInt";

@@ -1,22 +1,10 @@
-import {
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-  type ComponentProps,
-  type ComponentPropsWithRef,
-  type JSX,
-  type KeyboardEventHandler,
-  type Ref,
-  type RefCallback,
-  type RefObject,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import champFile from "~/championFeetList.json";
-import { cn } from "~/util/mergeCss";
-import { Navigate, NavLink } from "react-router";
+import { NavLink } from "react-router";
 import type { IChamp } from "~/util/types";
 import Autocomplete from "~/components/Autocomplete";
 import getRandomInt from "~/util/getRandomInt";
+import Timer from "~/components/Timer";
 
 export default function TimedPage() {
   const [champName, setChampName] = useState<string>();
@@ -57,12 +45,12 @@ export default function TimedPage() {
       setScore(score + 1);
       selectChamp();
     } else {
-      timer.current?.reduceTimer();
+      if (timer.current) {
+        timer.current.reduceTimer();
+      }
       setGuessState(true);
       updateHint();
       setGuessCount(guessCount + 1);
-      //update guess hint
-      //setHint()
     }
   };
 
@@ -156,53 +144,6 @@ export default function TimedPage() {
           End Game
         </NavLink>
       </div>
-    </div>
-  );
-}
-
-function Timer({ startTime, ref }: { startTime: number; ref?: any }) {
-  const [state, setState] = useState<number>(startTime);
-
-  const minutes = (time: number) => {
-    return Math.floor((time - 1) / 60);
-  };
-
-  const seconds = (time: number) => {
-    return time - Math.floor((time - 1) / 60) * 60 - 1;
-  };
-
-  /**
-   * Doesnt work as desired
-   * Since useEffect timer is using timout,
-   * it runs independantly.
-   * So when time is reduced, two timers are running
-   * Insead, time date should be used, and the deadline can be moved
-   * backwards 30 seconds to change the duration
-   */
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        reduceTimer() {
-          setState(state - 30);
-        },
-      };
-    },
-    [state]
-  );
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (state === 0) return;
-
-      setState(state - 1);
-    }, 1000);
-  }, [state]);
-
-  return (
-    <div>
-      {minutes(state)}:
-      {seconds(state) < 10 ? "0" + seconds(state) : seconds(state)}
     </div>
   );
 }
