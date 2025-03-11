@@ -1,7 +1,7 @@
 import infinite from "./infinite.jpeg";
 import health from "./health.jpeg";
 import timed from "./timed.jpeg";
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 
 export default function HomePage() {
   return (

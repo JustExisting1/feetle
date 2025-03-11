@@ -1,13 +1,13 @@
 import type { Route } from "./+types/home";
-import HomePage from "~/pages/Home/home";
+import HealthPage from "~/pages/Health/health";
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Feetle 🦶" },
-    { name: "description", content: "Welcome to Feetle Rewritten!" },
+    { name: "description", content: "Feetle where every guess matters." },
   ];
 }
 
 export default function Home() {
-  return <HomePage />;
+  return <HealthPage />;
 }

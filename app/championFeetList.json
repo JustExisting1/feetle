@@ -1,0 +1,514 @@
+[
+  {
+    "id": 0,
+    "name": "Ahri",
+    "tile": "Ahri.png",
+    "images": [
+      "ahri1.png",
+      "ahri10.png",
+      "ahri2.png",
+      "ahri3.png",
+      "ahri4.png",
+      "ahri5.png",
+      "ahri6.png",
+      "ahri7.png",
+      "ahri8.png",
+      "ahri9.png"
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Akali",
+    "tile": "Akali.png",
+    "images": [
+      "akali1.png",
+      "akali2.png",
+      "akali3.png",
+      "akali4.png",
+      "akali5.png",
+      "akali6.png",
+      "akali7.png"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Annie",
+    "tile": "Annie.png",
+    "images": [
+      "annie1.png",
+      "annie10.png",
+      "annie11.png",
+      "annie12.png",
+      "annie2.png",
+      "annie3.png",
+      "annie4.png",
+      "annie5.png",
+      "annie6.png",
+      "annie7.png",
+      "annie8.png",
+      "annie9.png"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Ashe",
+    "tile": "Ashe.png",
+    "images": ["ashe1.png", "ashe2.png", "ashe3.png", "ashe4.png", "ashe5.png"]
+  },
+  {
+    "id": 4,
+    "name": "Aurora",
+    "tile": "Aurora.png",
+    "images": ["aurora1.png", "aurora2.png"]
+  },
+  {
+    "id": 5,
+    "name": "Briar",
+    "tile": "Briar.png",
+    "images": ["briar1.png", "briar2.png", "briar3.png"]
+  },
+  {
+    "id": 6,
+    "name": "Caitlyn",
+    "tile": "Caitlyn.png",
+    "images": ["Caitlyn1.png", "Caitlyn2.png", "Caitlyn3.png", "Caitlyn4.png"]
+  },
+  {
+    "id": 7,
+    "name": "Camille",
+    "tile": "Camille.png",
+    "images": [
+      "camille1.png",
+      "camille2.png",
+      "camille3.png",
+      "camille4.png",
+      "camille5.png",
+      "camille6.png",
+      "camille7.png",
+      "camille8.png"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Diana",
+    "tile": "Diana.png",
+    "images": [
+      "diana1.png",
+      "diana2.png",
+      "diana3.png",
+      "diana4.png",
+      "diana5.png"
+    ]
+  },
+  { "id": 9, "name": "Elise", "tile": "Elise.png", "images": ["elise1.png"] },
+  {
+    "id": 10,
+    "name": "Evelynn",
+    "tile": "Evelynn.png",
+    "images": ["evelynn1.png", "evelynn2.png", "evelynn3.png", "evelynn4.png"]
+  },
+  { "id": 11, "name": "Fiora", "tile": "Fiora.png", "images": ["fiora1.png"] },
+  {
+    "id": 12,
+    "name": "Gwen",
+    "tile": "Gwen.png",
+    "images": ["gwen1.png", "gwen2.png"]
+  },
+  {
+    "id": 13,
+    "name": "Illaoi",
+    "tile": "Illaoi.png",
+    "images": ["illaoi1.png", "illaoi2.png"]
+  },
+  {
+    "id": 14,
+    "name": "Irelia",
+    "tile": "Irelia.png",
+    "images": ["irelia1.png"]
+  },
+  {
+    "id": 15,
+    "name": "Janna",
+    "tile": "Janna.png",
+    "images": [
+      "janna1.png",
+      "janna2.png",
+      "janna3.png",
+      "janna4.png",
+      "janna5.png"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Jinx",
+    "tile": "Jinx.png",
+    "images": [
+      "jinx1.png",
+      "jinx2.png",
+      "jinx3.png",
+      "jinx4.png",
+      "jinx5.png",
+      "jinx6.png",
+      "jinx7.png",
+      "jinx8.png",
+      "jinx9.png"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "KaiSa",
+    "tile": "KaiSa.png",
+    "images": [
+      "kaisa1.png",
+      "kaisa2.png",
+      "kaisa3.png",
+      "kaisa4.png",
+      "kaisa5.png"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Kalista",
+    "tile": "Kalista.png",
+    "images": ["kalista1.png"]
+  },
+  {
+    "id": 19,
+    "name": "Karma",
+    "tile": "Karma.png",
+    "images": ["karma1.png", "karma2.png"]
+  },
+  {
+    "id": 20,
+    "name": "Katarina",
+    "tile": "Katarina.png",
+    "images": [
+      "katarina1.png",
+      "katarina2.png",
+      "katarina3.png",
+      "katarina4.png"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Kayle",
+    "tile": "Kayle.png",
+    "images": [
+      "kayle1.png",
+      "kayle2.png",
+      "kayle3.png",
+      "kayle4.png",
+      "kayle5.png"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Kindred",
+    "tile": "Kindred.png",
+    "images": ["kindred1.png"]
+  },
+  {
+    "id": 23,
+    "name": "LeBlanc",
+    "tile": "LeBlanc.png",
+    "images": ["leblanc1.png", "leblanc2.png"]
+  },
+  {
+    "id": 24,
+    "name": "Leona",
+    "tile": "Leona.png",
+    "images": ["leona1.png", "leona2.png", "leona3.png", "leona4.png"]
+  },
+  {
+    "id": 25,
+    "name": "Lillia",
+    "tile": "Lillia.png",
+    "images": ["lillia1.png", "lillia2.png", "lillia3.png", "lillia4.png"]
+  },
+  {
+    "id": 26,
+    "name": "Lulu",
+    "tile": "Lulu.png",
+    "images": [
+      "lulu1.png",
+      "lulu2.png",
+      "lulu3.png",
+      "lulu4.png",
+      "lulu5.png",
+      "lulu6.png"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Lux",
+    "tile": "Lux.png",
+    "images": [
+      "lux1.png",
+      "lux2.png",
+      "lux3.png",
+      "lux4.png",
+      "lux5.png",
+      "lux6.png",
+      "lux7.png",
+      "lux8.png",
+      "lux9.png"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Miss Fortune",
+    "tile": "MissFortune.png",
+    "images": [
+      "missfortune1.png",
+      "missfortune10.png",
+      "missfortune11.png",
+      "missfortune12.png",
+      "missfortune13.png",
+      "missfortune14.png",
+      "missfortune15.png",
+      "missfortune2.png",
+      "missfortune3.png",
+      "missfortune4.png",
+      "missfortune5.png",
+      "missfortune6.png",
+      "missfortune7.png",
+      "missfortune8.png",
+      "missfortune9.png"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Morgana",
+    "tile": "Morgana.png",
+    "images": ["morgana1.png"]
+  },
+  {
+    "id": 30,
+    "name": "Neeko",
+    "tile": "Neeko.png",
+    "images": [
+      "neeko1.png",
+      "neeko2.png",
+      "neeko3.png",
+      "neeko4.png",
+      "neeko5.png"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Nidalee",
+    "tile": "Nidalee.png",
+    "images": [
+      "nidalee1.png",
+      "nidalee2.png",
+      "nidalee3.png",
+      "nidalee4.png",
+      "nidalee5.png",
+      "nidalee6.png"
+    ]
+  },
+  { "id": 32, "name": "Nilah", "tile": "Nilah.png", "images": ["nilah1.png"] },
+  {
+    "id": 33,
+    "name": "Orianna",
+    "tile": "Orianna.png",
+    "images": ["orianna1.png", "orianna2.png", "orianna3.png"]
+  },
+  {
+    "id": 34,
+    "name": "Poppy",
+    "tile": "Poppy.png",
+    "images": [
+      "poppy1.png",
+      "poppy2.png",
+      "poppy3.png",
+      "poppy4.png",
+      "poppy5.png",
+      "poppy6.png"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Qiyana",
+    "tile": "Qiyana.png",
+    "images": ["qiyana1.png", "qiyana2.png"]
+  },
+  {
+    "id": 36,
+    "name": "Quinn",
+    "tile": "Quinn.png",
+    "images": ["quinn1.png", "quinn2.png", "quinn3.png", "quinn4.png"]
+  },
+  { "id": 37, "name": "Rell", "tile": "Rell.png", "images": ["rell1.png"] },
+  {
+    "id": 38,
+    "name": "Riven",
+    "tile": "Riven.png",
+    "images": [
+      "riven1.png",
+      "riven2.png",
+      "riven3.png",
+      "riven4.png",
+      "riven5.png",
+      "riven6.png",
+      "riven7.png",
+      "riven8.png"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Samira",
+    "tile": "Samira.png",
+    "images": ["samira1.png"]
+  },
+  {
+    "id": 40,
+    "name": "Sejuani",
+    "tile": "Sejuani.png",
+    "images": ["sejuani1.png"]
+  },
+  {
+    "id": 41,
+    "name": "Senna",
+    "tile": "Senna.png",
+    "images": ["senna1.png", "senna2.png", "senna3.png", "senna4.png"]
+  },
+  {
+    "id": 42,
+    "name": "Seraphine",
+    "tile": "Seraphine.png",
+    "images": ["seraphine1.png", "seraphine2.png", "seraphine3.png"]
+  },
+  {
+    "id": 43,
+    "name": "Shyvana",
+    "tile": "Shyvana.png",
+    "images": ["shyvana1.png", "shyvana2.png"]
+  },
+  {
+    "id": 44,
+    "name": "Sivir",
+    "tile": "Sivir.png",
+    "images": [
+      "sivir1.png",
+      "sivir2.png",
+      "sivir3.png",
+      "sivir4.png",
+      "sivir5.png"
+    ]
+  },
+  { "id": 45, "name": "Sona", "tile": "Sona.png", "images": ["sona1.png"] },
+  {
+    "id": 46,
+    "name": "Soraka",
+    "tile": "Soraka.png",
+    "images": ["soraka1.png", "soraka2.png"]
+  },
+  {
+    "id": 47,
+    "name": "Syndra",
+    "tile": "Syndra.png",
+    "images": [
+      "syndra1.png",
+      "syndra2.png",
+      "syndra3.png",
+      "syndra4.png",
+      "syndra5.png"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Taliyah",
+    "tile": "Taliyah.png",
+    "images": ["taliyah1.png", "taliyah2.png"]
+  },
+  {
+    "id": 49,
+    "name": "Tristana",
+    "tile": "Tristana.png",
+    "images": [
+      "tristana1.png",
+      "tristana2.png",
+      "tristana3.png",
+      "tristana4.png",
+      "tristana5.png",
+      "tristana6.png",
+      "tristana7.png",
+      "tristana8.png"
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Vayne",
+    "tile": "Vayne.png",
+    "images": [
+      "vayne1.png",
+      "vayne2.png",
+      "vayne3.png",
+      "vayne4.png",
+      "vayne5.png",
+      "vayne6.png",
+      "vayne7.png",
+      "vayne8.png"
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Vex",
+    "tile": "Vex.png",
+    "images": ["vex1.png", "vex2.png"]
+  },
+  {
+    "id": 52,
+    "name": "Vi",
+    "tile": "Vi.png",
+    "images": [
+      "vi1.png",
+      "vi2.png",
+      "vi3.png",
+      "vi4.png",
+      "vi5.png",
+      "vi6.png",
+      "vi7.png"
+    ]
+  },
+  { "id": 53, "name": "Xayah", "tile": "Xayah.png", "images": ["xayah1.png"] },
+  {
+    "id": 54,
+    "name": "Yuumi",
+    "tile": "Yuumi.png",
+    "images": [
+      "yuumi1.png",
+      "yuumi2.png",
+      "yuumi3.png",
+      "yuumi4.png",
+      "yuumi5.png"
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Zeri",
+    "tile": "Zeri.png",
+    "images": ["zeri1.png", "zeri2.png", "zeri3.png"]
+  },
+  {
+    "id": 56,
+    "name": "Zoe",
+    "tile": "Zoe.png",
+    "images": [
+      "zoe1.png",
+      "zoe2.png",
+      "zoe3.png",
+      "zoe4.png",
+      "zoe5.png",
+      "zoe6.png",
+      "zoe7.png"
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Zyra",
+    "tile": "Zyra.png",
+    "images": ["zyra1.png", "zyra2.png", "zyra3.png", "zyra4.png"]
+  }
+]

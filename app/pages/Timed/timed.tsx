@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import champFile from "~/championFeetList.json";
 import { NavLink } from "react-router";
 import type { IChamp } from "~/util/types";
 import Autocomplete from "~/components/Autocomplete";
 import getRandomInt from "~/util/getRandomInt";
+import Timer from "~/components/Timer";
 import GameOverModal from "~/components/gameover";
 
-export default function InfinitePage() {
+export default function TimedPage() {
   const [champName, setChampName] = useState<string>();
   const [champImage, setChampImage] = useState<string>();
   const [score, setScore] = useState<number>(0);
   const [gameover, setGameover] = useState<boolean>(false);
+  const timer = useRef(null);
 
   const champlist: IChamp[] = champFile; //Could be api call for champlist
   const MAX = champlist.length;
@@ -45,11 +47,12 @@ export default function InfinitePage() {
       setScore(score + 1);
       selectChamp();
     } else {
+      if (timer.current) {
+        timer.current.reduceTimer();
+      }
       setGuessState(true);
       updateHint();
       setGuessCount(guessCount + 1);
-      //update guess hint
-      //setHint()
     }
   };
 
@@ -106,6 +109,9 @@ export default function InfinitePage() {
         </div>
         <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
           Score:{score}
+        </div>
+        <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
+          <Timer startTime={300} ref={timer} pause={gameover} />
         </div>
         <div className="w-2/3 h-fit aspect-square overflow-clip rounded-2xl border-2 border-league-gold">
           <img className="size-full aspect-square" src={champImage} />
