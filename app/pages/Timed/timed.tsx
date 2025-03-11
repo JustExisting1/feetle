@@ -48,7 +48,7 @@ export default function TimedPage() {
       selectChamp();
     } else {
       if (timer.current) {
-        timer.current.reduceTimer();
+        // timer.current.reduceTimer();
       }
       setGuessState(true);
       updateHint();
@@ -102,16 +102,18 @@ export default function TimedPage() {
     <div className="bg-[url(/background.png)] h-dvh w-screen bg-cover bg-center p-4 font-display flex flex-col">
       <GameOverModal show={gameover} score={score} />
       <div
-        className="w-full md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-1/4 h-full overflow-y-clip text-white bg-black/70 border-3 border-league-gold rounded-2xl 
+        className="w-full md:w-2/3 lg:w-3/5 overflow-y-scroll xl:w-1/2 2xl:w-1/4 h-full text-white bg-black/70 border-3 border-league-gold rounded-2xl 
        place-self-center place-items-center flex flex-col gap-4 place-content-start py-4">
         <div className="text-lg text-center">
           Total Scored All Time:456456465
         </div>
-        <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
-          Score:{score}
-        </div>
-        <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg w-fit max-w-full line-clamp-1 overflow-hidden text-white">
-          <Timer startTime={300} ref={timer} pause={gameover} />
+        <div className="flex flex-row gap-2 w-2/3 place-content-around">
+          <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg min-w-fit w-1/3 max-w-full flex justify-center line-clamp-1 overflow-hidden text-white">
+            <Timer startTime={300} ref={timer} pause={gameover} />
+          </div>
+          <div className="bg-league-gold p-2 text-2xl shrink-0 h-fit rounded-lg min-w-fit w-1/3 max-w-full flex justify-center line-clamp-1 overflow-hidden text-white">
+            Score:{score}
+          </div>
         </div>
         <div className="w-2/3 h-fit aspect-square overflow-clip rounded-2xl border-2 border-league-gold">
           <img className="size-full aspect-square" src={champImage} />
@@ -136,7 +138,7 @@ export default function TimedPage() {
         </div>
         <Autocomplete
           champList={champlist}
-          classname="w-10/12 2xl:w-2/3 p-2 gap-2 rounded-xl min-h-1 grow flex flex-col"
+          classname="w-10/12 2xl:w-2/3 p-2 gap-2 rounded-xl h-[28vh] grow flex flex-col"
           submitGuess={guessSubmit}
           clearOnChange={score}
         />
