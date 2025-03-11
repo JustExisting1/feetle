@@ -126,7 +126,7 @@ function ResultList({
             key={result.id}
             onClick={() => handleSelect(result)}
             className={cn(
-              "flex flex-row h-16 w-full place-content-start gap-2 hover:bg-white/20",
+              "flex flex-row h-[6vh] w-full place-content-start gap-2 hover:bg-white/20",
               activeIndex === index
                 ? "active bg-white/20 ring-2 ring-league-gold drop-shadow-md"
                 : ""
