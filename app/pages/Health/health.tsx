@@ -12,12 +12,14 @@ import { Navigate, NavLink, redirect, useNavigate } from "react-router";
 import type { IChamp } from "~/util/types";
 import Autocomplete from "~/components/Autocomplete";
 import getRandomInt from "~/util/getRandomInt";
+import GameOverModal from "~/components/gameover";
 
 export default function HealthPage() {
   const [champName, setChampName] = useState<string>();
   const [champImage, setChampImage] = useState<string>();
   const [score, setScore] = useState<number>(0);
   const [hp, setHp] = useState<number>(3);
+  const [gameover, setGameover] = useState<boolean>(false);
 
   /**
    * Add hp system
@@ -107,9 +109,7 @@ export default function HealthPage() {
   const navigate = useNavigate();
   useEffect(() => {
     if (hp <= 0) {
-      console.log("Game over with a score of: " + score);
-      //redirect to leaderboard/game over page
-      navigate("/");
+      setGameover(true);
     }
   }, [hp]);
 
@@ -119,6 +119,7 @@ export default function HealthPage() {
 
   return (
     <div className="bg-[url(/background.png)] h-dvh w-screen bg-cover bg-center p-4 font-display flex flex-col">
+      <GameOverModal show={gameover} score={score} />
       <div
         className="w-full md:w-2/3 lg:w-3/5 xl:w-1/2 2xl:w-1/3 h-full overflow-y-clip text-white bg-black/70 border-3 border-league-gold rounded-2xl 
        place-self-center place-items-center flex flex-col gap-4 place-content-start py-4">
@@ -154,16 +155,15 @@ export default function HealthPage() {
         </div>
         <Autocomplete
           champList={champlist}
-          classname="w-10/12 2xl:w-2/3 p-2 gap-2 rounded-xl min-h-1/3 grow flex flex-col"
+          classname="w-10/12 2xl:w-2/3 p-2 gap-2 rounded-xl min-h-1 grow flex flex-col"
           submitGuess={guessSubmit}
           clearOnChange={score}
         />
-        <NavLink
+        <button
           className="bg-destructive p-2 rounded-lg text-xl shrink-0 h-fit"
-          to="/"
-          end>
+          onClick={() => setGameover(true)}>
           End Game
-        </NavLink>
+        </button>
       </div>
     </div>
   );

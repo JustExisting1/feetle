@@ -4,9 +4,11 @@ import { useNavigate } from "react-router";
 export default function Timer({
   startTime,
   ref,
+  pause,
 }: {
   startTime: number;
   ref?: any;
+  pause?: boolean;
 }) {
   const navigate = useNavigate();
   const [state, setState] = useState<number>(1);
@@ -46,15 +48,17 @@ export default function Timer({
   );
 
   useEffect(() => {
-    setTimeout(() => {
-      //update each second
-      if (timeDiff(deadline) <= 0) {
-        //redirect to scoreboard indead
-        navigate("/");
-      }
+    if (pause != true) {
+      setTimeout(() => {
+        //update each second
+        if (timeDiff(deadline) <= 0) {
+          //redirect to scoreboard indead
+          navigate("/");
+        }
 
-      setState(state * -1);
-    }, 1000);
+        setState(state * -1);
+      }, 1000);
+    }
   }, [state]);
 
   const returnTime = () => {
